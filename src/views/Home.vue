@@ -1,39 +1,53 @@
 <template>
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
     <div class="h-[125px] bg-[#6765F2] text-white flex flex-col px-4">
       <p class="text-[24px] font-bold mt-7 pl-2">Welcome {{ username }}!</p>
       <p class="text-[16px] pl-2">Stay Organized, get things done!</p>
     </div>
+
+    <!-- Main Content -->
     <div class="flex flex-col items-center justify-center mt-1">
       <SearchBar v-model="searchQuery" />
       <Navbar v-model="selectedCategory" />
 
+      <div v-if="selectedCategory === 'Completed'" class="text-center mt-4 text-[#333] font-medium px-4">
+        check ✅ — progress feels good, right? <br />
+        Great job! Keep the momentum going.
+      </div>
+      
+
+      <!-- Tasks Section -->
+      <div class="w-full mt-4 px-8">
+        <div v-if="tasks.length === 0" class="flex flex-col items-center justify-center mt-12">
+          <img :src="emptyImage" alt="Empty tasks" class="w-40 sm:w-56 object-contain" />
+          <p class="w-[250px] text-center text-lg text-gray-600 mt-4 font-medium">
+            No tasks yet in this category. Click + to create your task.
+          </p>
+        </div>
+
+        <div v-else>
+          <TaskItem
+            v-for="task in filteredTasks"
+            :key="task.id"
+            :task="task"
+            :isCompletedview="selectedCategory === 'Completed'"
+            @toggle-complete="handleToggleComplete"
+            @edit-task="handleEditTask"
+            @delete-task="handleDeleteTask"
+            @update-tasks="loadTasks"
+          />
+        </div>
+      </div>
     </div>
-    <div class="fixed bottom-6 ml-[340px]">
+
+    <!-- Add Button at bottom, inside layout -->
+    <div class="flex justify-end pr-6 pb-6">
       <AddButton />
     </div>
+  </div>
+</template>
 
-   <div class="p-4 mt-1">
-
-<!-- If no tasks -->
-     <div v-if="tasks.length === 0" class="flex flex-col items-center justify-center mt-12">
-       <img :src="emptyImage" alt="Empty tasks" class="w-56 h-56 object-contain" />
-        <p class="w-[250px] text-center text-lg text-gray-600 mt-4 font-medium">No tasks yet in this category. Click + to create your task.</p>
-     </div>
-
-<!-- If tasks exist -->
-     <div v-else>
-      <TaskItem
-        v-for="task in filteredTasks"
-        :key="task.id"
-        :task="task"
-        @toggle-complete="handleToggleComplete"
-        @edit-task="handleEditTask"
-        @delete-task="handleDeleteTask"
-      />
-     </div>
-    </div>
-    
-  </template>
   
   <script setup>
   import { ref, onMounted, watch, computed } from 'vue'
@@ -47,19 +61,26 @@
 
   
   
-  const username = ref('')
+  const username = ref(localStorage.getItem('username') || 'User')
   const tasks = ref([])
   const searchQuery = ref('')
   const selectedCategory = ref('All')
 
   const router = useRouter()
 
+  // Load tasks from localStorage
   const loadTasks = () => {
     const savedTasks = JSON.parse(localStorage.getItem('tasks')) || []
     tasks.value = savedTasks
   }
 
 
+  // Load when component mounts
+  onMounted(() => {
+    loadTasks()
+  })
+
+// Computed: Filter tasks by search and category
   const filteredTasks = computed(() => {
   return tasks.value.filter(task => {
     const matchesSearch = task.title.toLowerCase().includes(searchQuery.value.toLowerCase())
@@ -75,14 +96,6 @@
 
 
   
-  onMounted(() => {
-    username.value = localStorage.getItem('username') || 'User'
-
-    // Load tasks from localStorage
-  const savedTasks = JSON.parse(localStorage.getItem('tasks')) || []
-  tasks.value = savedTasks
-  })
-
   watch(router, () => {
     loadTasks()
   })
@@ -93,11 +106,10 @@
       task.isCompleted = !task.isCompleted
       localStorage.setItem('tasks', JSON.stringify(tasks.value))
     }
-   
-    
-  }
+   }
 
   function handleEditTask(id) {
+
     router.push(`/EditTask?id=${id}`)
     
   }

@@ -1,14 +1,17 @@
 <template>
+    <div class="min-h-screen bg-white flex flex-col">
     <!-- Header -->
-    <div class="h-[125px] bg-[#6765F2] text-white pl-6 pt-7">
+    <div class="w-full h-[125px] bg-[#6765F2] text-white px-6 pt-7">
       <h1 class="font-bold text-[24px] font-poppins">
-        {{ isEditing ? 'Edit Task' : 'Add New Task' }}
+        Edit Task
       </h1>
       <p class="text-[16px] font-regular">
-        {{ isEditing ? 'Make changes to your task ✏️' : 'Every task you add is progress 💪' }}
+        Make changes to your task ✏️
       </p>
     </div>
-  
+
+    <div class="flex-grow w-full max-w-md mx-auto mt-6 px-4 space-y-6">
+
     <!-- Title -->
     <div class="mb-4 mt-6 pl-6">
       <label class="block text-gray-700 mb-4 text-[18px] font-medium">Title</label>
@@ -88,11 +91,13 @@
         Cancel
       </button>
       <button
-        @click="isEditing ? updateTask() : addTask()"
+        @click="updateTask()"
         class="w-[92px] h-[40px] bg-[#6765F2] text-white text-[16px] font-semibold py-2 rounded-[10px] hover:bg-[#5553e6] transition duration-200"
       >
-        {{ isEditing ? 'Update' : 'Save' }}
+        Update
       </button>
+    </div>
+    </div>
     </div>
   </template>
   
@@ -108,13 +113,11 @@
   const deadline = ref('')
   const category = ref('')
   
-  const isEditing = ref(false)
   const editingId = ref(null)
   
   onMounted(() => {
     const taskId = route.query.id
     if (taskId) {
-      isEditing.value = true
       editingId.value = Number(taskId)
       const tasks = JSON.parse(localStorage.getItem('tasks')) || []
       const existing = tasks.find(task => task.id === editingId.value)
@@ -128,27 +131,6 @@
     }
   })
   
-  const addTask = () => {
-    if (!title.value || !details.value || !deadline.value || !category.value) {
-      alert('Please fill in all fields')
-      return
-    }
-  
-    const newTask = {
-      id: Date.now(),
-      title: title.value,
-      details: details.value,
-      deadline: deadline.value,
-      category: category.value,
-      completed: false
-    }
-  
-    const saved = JSON.parse(localStorage.getItem('tasks')) || []
-    saved.push(newTask)
-    localStorage.setItem('tasks', JSON.stringify(saved))
-  
-    router.push('/home')
-  }
   
   const updateTask = () => {
     const saved = JSON.parse(localStorage.getItem('tasks')) || []
