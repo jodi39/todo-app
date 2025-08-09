@@ -10,38 +10,38 @@
       </p>
     </div>
 
-    <div class="flex-grow w-full max-w-md mx-auto mt-6 px-4 space-y-6">
+    <div class="flex-grow w-full max-w-md mx-auto mt-6 px-4 py-3 sm:px-6 sm:py-8 space-y-6">
 
     <!-- Title -->
-    <div class="mb-4 mt-6 pl-6">
-      <label class="block text-gray-700 mb-4 text-[18px] font-medium">Title</label>
+    <div>
+        <label class="block text-gray-700 mb-2 text-base sm:text-lg md:text-xl font-medium">Title</label>
       <input
         type="text"
         v-model="title"
         placeholder="Enter task title"
-        class="w-[340px] h-[48px] border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#6765F2]"
-      />
+        class="w-full max-w-md h-12 md:h-16 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#6765F2]"
+        />
     </div>
   
     <!-- Details -->
-    <div class="mb-4 mt-6 pl-6">
-      <label class="block text-gray-700 mb-4 text-[18px] font-medium">Details</label>
+    <div>
+      <label class="block text-gray-700 mb-2 text-base sm:text-lg md:text-xl font-medium">Details</label>
       <textarea
         v-model="details"
         rows="4"
         placeholder="Write details here..."
-        class="w-[340px] h-[120px] border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#6765F2]"
-      ></textarea>
+        class="w-full max-w-md h-12 md:h-40 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#6765F2]"
+        ></textarea>
     </div>
   
     <!-- Deadline -->
-    <div class="mb-4 mt-6 pl-6">
-      <label class="block text-gray-700 mb-4 text-[18px] font-medium">Deadline</label>
+    <div>
+      <label class="block text-gray-700 mb-2 text-base sm:text-lg md:text-xl font-medium">Deadline</label>
       <input
         type="date"
         v-model="deadline"
-        class="w-[340px] h-[48px] border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#6765F2]"
-      />
+        class="w-full max-w-md h-12 md:h-16 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#6765F2]"
+        />
     </div>
   
     <!-- Category -->
@@ -83,20 +83,21 @@
     </div>
   
     <!-- Buttons -->
-    <div class="flex justify-between items-center mt-12 pl-7 pr-7">
-      <button
-        @click="router.push('/home')"
-        class="w-[113px] h-[40px] bg-[#FF0000] text-white text-[16px] font-semibold py-2 rounded-[10px] hover:bg-[#A40202] transition duration-200"
-      >
-        Cancel
-      </button>
-      <button
-        @click="updateTask()"
-        class="w-[92px] h-[40px] bg-[#6765F2] text-white text-[16px] font-semibold py-2 rounded-[10px] hover:bg-[#5553e6] transition duration-200"
-      >
-        Update
-      </button>
-    </div>
+    <div class="flex flex-row sm:flex-row justify-between items-center mt-8 mb-6  gap-3">
+        <button
+    @click="router.push('/home')"
+    class="min-w-[90px] sm:min-w-[113px] h-[40px] bg-[#FF0000] text-white text-[16px] font-semibold py-2 rounded-[10px] hover:bg-[#A40202] transition duration-200"
+    >
+    Cancel
+  </button>
+  <button
+    @click="updateTask()"
+    class="min-w-[92px] sm:min-w-[105px] h-[40px] bg-[#6765F2] text-white text-[16px] font-semibold py-2 rounded-[10px] hover:bg-[#5553e6] transition duration-200"
+    >
+    Update
+  </button>
+</div>
+
     </div>
     </div>
   </template>

@@ -1,7 +1,7 @@
 <template>
   <!-- Header -->
-  <div class="h-[244px] bg-[#6765F2] text-white flex flex-col items-center justify-center text-center">
-    <h1 class="text-2xl sm:text-4xl font-bold leading-tight font-poppins">
+  <div class="h-[200px] bg-[#6765F2] text-white flex flex-col items-center justify-center text-center px-4">
+    <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight font-poppins">
       Welcome to To-do List
     </h1>
     <p class="text-base sm:text-lg font-semibold mt-2">
@@ -10,8 +10,9 @@
   </div>
 
   <!-- Image Section -->
-  <div class="flex items-center justify-center">
-    <img :src="todoImage" alt="Todo Illustration" class="h-full max-w-full h-auto object-contain" />
+  <div class="w-full">
+    <img :src="todoImage" alt="Todo Illustration" class="w-full h-auto object-cover" 
+    />
   </div>
 
   <!-- Description -->

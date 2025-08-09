@@ -2,9 +2,10 @@
   <div class="min-h-screen flex flex-col">
     <!-- Header -->
     <div class="h-[125px] bg-[#6765F2] text-white flex flex-col px-4">
-      <p class="text-[24px] font-bold mt-7 pl-2">Welcome {{ username }}!</p>
-      <p class="text-[16px] pl-2">Stay Organized, get things done!</p>
+      <p class="text-xl sm:text-2xl font-bold mt-7 pl-2">Welcome {{ username }}!</p>
+      <p class="text-base sm:text-lg pl-2">Stay Organized, get things done!</p>
     </div>
+
 
     <!-- Main Content -->
     <div class="flex flex-col items-center justify-center mt-1">
@@ -18,7 +19,7 @@
       
 
       <!-- Tasks Section -->
-      <div class="w-full mt-4 px-8">
+      <div class="w-full max-w-4xl mx-auto mt-4 px-4 sm:px-8">
         <div v-if="tasks.length === 0" class="flex flex-col items-center justify-center mt-12">
           <img :src="emptyImage" alt="Empty tasks" class="w-40 sm:w-56 object-contain" />
           <p class="w-[250px] text-center text-lg text-gray-600 mt-4 font-medium">
@@ -42,7 +43,7 @@
     </div>
 
     <!-- Add Button at bottom, inside layout -->
-    <div class="flex justify-end pr-6 pb-6">
+    <div class="flex justify-end px-4 sm:pr-6 pb-6">
       <AddButton />
     </div>
   </div>

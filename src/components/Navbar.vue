@@ -1,10 +1,10 @@
 <template>
-    <div class="flex gap-6 sm:gap-3 mt-4 overflow-x-auto px-4">
+    <div class="flex gap-3 sm:gap-10 mt-4 overflow-x-auto px-4">
       <button
         v-for="category in categories"
         :key="category"
         :class="[
-          'flex-shrink-0 px-4 py-1 text-sm sm:text-[14px] font-medium',
+          'flex-shrink-0 px-4 py-1 text-xs sm:text-sm font-medium',
           selected === category
             ? 'bg-[#6765F2] text-white rounded-[20px] font-bold'
             : 'border border-[#333] text-gray-700 rounded-[10px]'

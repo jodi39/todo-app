@@ -8,11 +8,11 @@
     </div>
 
     <!-- Form Container -->
-    <div class="flex-grow w-full max-w-md mx-auto mt-6 px-4 space-y-6">
+    <div class="flex-grow w-full max-w-md mx-auto mt-6 px-4 py-3 sm:px-6 sm:py-8 space-y-6">
       
       <!-- Title -->
       <div>
-        <label class="block text-gray-700 mb-2 text-[18px] font-medium">Title</label>
+        <label class="block text-gray-700 mb-2 text-base sm:text-lg md:text-xl font-medium">Title</label>
         <input
           type="text"
           v-model="title"
@@ -25,7 +25,7 @@
 
       <!-- Details -->
       <div>
-        <label class="block text-gray-700 mb-2 text-[18px] font-medium">Details</label>
+        <label class="block text-gray-700 mb-2 text-base sm:text-lg md:text-xl font-medium">Details</label>
         <textarea
           v-model="details"
           required
@@ -38,7 +38,7 @@
 
       <!-- Deadline -->
       <div>
-        <label class="block text-gray-700 mb-2 text-[18px] font-medium">Deadline</label>
+        <label class="block text-gray-700 mb-2 text-base sm:text-lg md:text-xl font-medium">Deadline</label>
         <input
           type="date"
           v-model="deadline"
@@ -50,7 +50,7 @@
 
       <!-- Category -->
       <div>
-        <label class="block text-gray-700 mb-2 text-[18px] font-medium">Category</label>
+        <label class="block text-gray-700 mb-2 text-base sm:text-lg md:text-xl font-medium">Category</label>
         <div class="flex flex-col gap-3">
           <label
             v-for="option in ['Work', 'Personal', 'all']"
@@ -88,19 +88,20 @@
       </div>
 
       <!-- Buttons -->
-      <div class="flex justify-between items-center mt-8 mb-6" >
+      <div class="flex flex-row sm:flex-row justify-between items-center mt-8 mb-6  gap-3">
         <button
-          @click="router.push('/home')"
-          class="w-[113px] h-[40px] bg-[#FF0000] text-white text-[16px] font-semibold py-2 rounded-[10px] hover:bg-[#A40202] transition duration-200"
-        >
-          Cancel
-        </button>
-        <button
-          @click="addTask"
-          class="w-[92px] h-[40px] bg-[#6765F2] text-white text-[16px] font-semibold py-2 rounded-[10px] hover:bg-[#5553e6] transition duration-200"
-        >
-          Save
-        </button>
+  @click="router.push('/home')"
+  class="min-w-[90px] sm:min-w-[113px] h-[40px] bg-[#FF0000] text-white text-[16px] font-semibold py-2 rounded-[10px] hover:bg-[#A40202] transition duration-200"
+>
+  Cancel
+</button>
+<button
+  @click="addTask"
+  class="min-w-[75px] sm:min-w-[92px] h-[40px] bg-[#6765F2] text-white text-[16px] font-semibold py-2 rounded-[10px] hover:bg-[#5553e6] transition duration-200"
+>
+  Save
+</button>
+
       </div>
     </div>
   </div>
