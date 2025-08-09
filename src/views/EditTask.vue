@@ -45,13 +45,13 @@
     </div>
   
     <!-- Category -->
-    <div class="mb-4 mt-6 pl-6">
-      <label class="block text-gray-700 mb-4 text-[18px] font-medium">Category</label>
+    <div>
+      <label class="block text-gray-700 mb-2 text-base sm:text-lg md:text-xl font-medium">Category</label>
       <div class="flex flex-col gap-3">
         <label
           v-for="option in ['Work', 'Personal', 'all']"
           :key="option"
-          class="flex items-center gap-3 cursor-pointer pl-6"
+          class="flex items-center gap-3 cursor-pointer"
         >
           <input
             type="radio"
