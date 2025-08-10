@@ -45,7 +45,7 @@ const formatDate = (isoString) => {
 
 const isCompleted = ref(false)
 
-// On component mount, load actual task status from localStorage
+// load actual task status from localStorage
 onMounted(() => {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || []
   const current = tasks.find(t => t.id === props.task.id)
@@ -63,7 +63,7 @@ const toggleCompleted = () => {
   if (index !== -1) {
     tasks[index].isCompleted = isCompleted.value
     localStorage.setItem('tasks', JSON.stringify(tasks))
-    emit('update-tasks') // 👈 Notify parent to reload tasks
+    emit('update-tasks') // Notify parent to reload tasks
   }
 }
 

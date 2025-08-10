@@ -21,8 +21,9 @@
         </div>
       </div>
   
-      <!-- Main Content -->
-      <div class="px-10 py-4 flex-1 flex flex-col">
+     <!-- Main Content -->
+<div class="px-4 sm:px-6 md:px-10 py-4 flex-1 flex flex-col w-full">
+
         <div v-if="task">
           <h2 class="text-[24px] font-bold text-[#333] mt-5 mb-4">{{ task.title }}</h2>
           <p class="text-[16px] font-medium text-[#333] mb-4">{{ task.details }}</p>
@@ -88,9 +89,9 @@
 
   }
   
-  function editTask(id) {
+  function editTask() {
 
-router.push(`/EditTask?id=${id}`)
+router.push(`/EditTask?id=${task.value.id}`)
 
 }
   

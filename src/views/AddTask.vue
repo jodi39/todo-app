@@ -145,7 +145,7 @@ const addTask = () => {
   // Stop if any errors
   if (Object.values(errors.value).some(error => error)) return
 
-  // ✅ Your logic to save the task goes here
+  // to save the task goes here
   console.log('Task saved!')
   
 
